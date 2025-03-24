@@ -1,0 +1,74 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.4, pluggy-1.5.0
+rootdir: /home/hpm-mv/Documents/algorithms
+configfile: pytest.ini
+testpaths: tests
+plugins: launch-testing-1.0.7, ament-flake8-0.12.11, ament-pep257-0.12.11, ament-copyright-0.12.11, ament-lint-0.12.11, launch-testing-ros-0.19.8, ament-xmllint-0.12.11, typeguard-4.4.2, run-parallel-0.3.1, xdist-3.6.1, cov-6.0.0
+created: 32/32 workers
+32 workers [415 items]
+
+........................................................................ [ 17%]
+........................................................................ [ 34%]
+.........F.....F............F........................................... [ 52%]
+........................................................................ [ 69%]
+........................................................................ [ 86%]
+.......................................................                  [100%]
+=================================== FAILURES ===================================
+__________________________ TestBinaryHeap.test_insert __________________________
+[gw25] linux -- Python 3.10.12 /home/hpm-mv/Documents/algorithms/.venv/bin/python3
+
+self = <test_heap.TestBinaryHeap testMethod=test_insert>
+
+    def test_insert(self):
+        # Before insert 2: [0, 4, 50, 7, 55, 90, 87]
+        # After insert:  [0, 2, 50, 4, 55, 90, 87, 7]
+        self.min_heap.insert(2)
+>       self.assertEqual([0, 2, 50, 4, 55, 90, 87, 7],
+                         self.min_heap.heap)
+E       AssertionError: Lists differ: [0, 2, 50, 4, 55, 90, 87, 7] != [0, 2, 2, 4, 2, 2, 87, 7, 55, 50, 90, 2]
+E       
+E       First differing element 2:
+E       50
+E       2
+E       
+E       Second list contains 4 additional elements.
+E       First extra element 8:
+E       55
+E       
+E       - [0, 2, 50, 4, 55, 90, 87, 7]
+E       + [0, 2, 2, 4, 2, 2, 87, 7, 55, 50, 90, 2]
+
+tests/test_heap.py:29: AssertionError
+_________________________ TestSuite.test_is_palindrome _________________________
+[gw31] linux -- Python 3.10.12 /home/hpm-mv/Documents/algorithms/.venv/bin/python3
+
+self = <test_linkedlist.TestSuite testMethod=test_is_palindrome>
+
+    def test_is_palindrome(self):
+>       self.assertTrue(is_palindrome(self.l))
+E       AssertionError: False is not true
+
+tests/test_linkedlist.py:167: AssertionError
+________________________ TestBinaryHeap.test_remove_min ________________________
+[gw25] linux -- Python 3.10.12 /home/hpm-mv/Documents/algorithms/.venv/bin/python3
+
+self = <test_heap.TestBinaryHeap testMethod=test_remove_min>
+
+    def test_remove_min(self):
+        ret = self.min_heap.remove_min()
+        # Before remove_min : [0, 4, 50, 7, 55, 90, 87]
+        # After remove_min: [7, 50, 87, 55, 90]
+        # Test return value
+>       self.assertEqual(4, ret)
+E       AssertionError: 4 != 7
+
+tests/test_heap.py:38: AssertionError
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Coverage HTML written to dir htmlcov
+
+=========================== short test summary info ============================
+FAILED tests/test_heap.py::TestBinaryHeap::test_insert - AssertionError: List...
+FAILED tests/test_linkedlist.py::TestSuite::test_is_palindrome - AssertionErr...
+FAILED tests/test_heap.py::TestBinaryHeap::test_remove_min - AssertionError: ...
+================== 3 failed, 412 passed in 235.24s (0:03:55) ===================
